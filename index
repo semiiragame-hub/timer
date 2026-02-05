@@ -1,0 +1,50 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+    body {
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    #timer {
+        font-family: 'VT323', monospace; /* Пиксельный шрифт */
+        font-size: 120px;
+        color: #fff;
+        position: relative;
+        /* Эффект слоения для глитча */
+        text-shadow: 
+            0.05em 0 0 rgba(255, 0, 85, 0.75),
+            -0.025em -0.05em 0 rgba(0, 255, 204, 0.75),
+            0.025em 0.05em 0 rgba(18, 52, 219, 0.75);
+        animation: glitch 500ms infinite;
+    }
+
+    /* Анимация "дрожания" пикселей (Pixel drift) */
+    @keyframes glitch {
+        0% { text-shadow: 2px 2px #ff0055, -2px -2px #00ffcc; transform: translate(0); }
+        20% { text-shadow: -3px 0 #ff0055, 3px 0 #00ffcc; transform: translate(-2px, 1px); }
+        40% { transform: translate(-2px, -1px); }
+        60% { text-shadow: 2px -2px #ff0055, -2px 2px #00ffcc; transform: translate(2px, 1px); }
+        80% { transform: translate(2px, -1px); }
+        100% { text-shadow: 2px 2px #ff0055, -2px -2px #00ffcc; transform: translate(0); }
+    }
+
+    /* Наложение VHS шума (Texture) */
+    body::after {
+        content: " ";
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        background: rgba(18, 16, 16, 0.1);
+        opacity: 0.1;
+        z-index: 2;
+        pointer-events: none;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        background-size: 100% 2px, 3px 100%;
+    }
+</style>
